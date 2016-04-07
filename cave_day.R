@@ -114,7 +114,7 @@ w3E[w3E>10000] <- NA
 # mtext("# saturated pixels",side=2,outer=T)
 # mtext("Frame during day",side=1,line=2,outer=T)
 # mtext('b',font=2,side=3,line=1,at=-2,cex=1)
-# mtext("Wyandotte Cave Hole 2013-2014",side=3,outer=T)
+# mtext("Wyandotte Cave deeper 2013-2014",side=3,outer=T)
 # 
 # par(omi=c(1,0.5,0.5,0.5))
 # par(mai=c(0.8,0.8,0.8,0.8))
@@ -282,11 +282,11 @@ axis(at=seq(from=0,to=288,by=288/24),labels=seq(from=0,to=24,by=1),side=1)
 legend("top",c("mean","95% confidence intervals"),lty=1,col=c("black","grey"),bty="n")
 dev.off()
 
-pdf(file = "Wyandotte Cave Hole 2013-2014 means.pdf")
+pdf(file = "Wyandotte Cave deeper 2013-2014 means.pdf")
 u95ci<-rowMeans((t(w1H)))+rowSds((t(w1H)))/sqrt(length((t(w1H))[1,]))
 l95ci<-rowMeans((t(w1H)))-rowSds((t(w1H)))/sqrt(length((t(w1H))[1,]))
 plot(rowMeans((t(w1H))),type="l",ylim=c(min(l95ci),max(u95ci)),
-     main="Wyandotte Cave Hole 2013-2014",xlab="hours",ylab="Mean # saturated pixels",labels=F,axes=F)
+     main="Wyandotte Cave deeper 2013-2014",xlab="hours",ylab="Mean # saturated pixels",labels=F,axes=F)
 lines(u95ci,col="grey")
 lines(l95ci,col="grey")
 axis(at=seq(from=0,to=50,by=10),labels=c(0,10,20,30,40,50),side=2)
@@ -309,10 +309,11 @@ box()
 axis(at=seq(from=0,to=length(tgap1),by=288*7),labels=seq(from=0,to=14,by=1),side=1)
 dev.off()
 
-# wtgap1<-morlet(tgap1, x1 = seq_along(tgap1), p2 = NULL, dj = 0.25, siglvl = 0.95)
-# windows() # if plot too large
-# wavelet.plot(wtgap1,crn.lab="Pixel",x.lab="Time")
-#graphics.off()
+ wtgap1<-morlet(sqrt(tgap1), x1 = seq_along(tgap1), p2 = NULL, dj = 0.25, siglvl = 0.95)
+ pdf(file = "Gap Cave 2011-2012 morlet.pdf") 
+ wavelet.plot(wtgap1,crn.lab="Pixel",x.lab="Time")
+# graphics.off()
+ dev.off()
 # 
 # par(omi=c(1,0.5,0.5,0.5))
 # par(mai=c(0.8,0.8,0.8,0.8))
@@ -357,10 +358,12 @@ axis(at=seq(from=0,to=1000,by=500),labels=c(0,500,1000),side=2)
 box()
 axis(at=seq(from=0,to=length(tgap2),by=288*7),labels=seq(from=0,to=20,by=1),side=1)
 dev.off()
-# wtgap2<-morlet(tgap2, x1 = seq_along(tgap2), p2 = NULL, dj = 0.25, siglvl = 0.95)
-# windows() # if plot too large
-# wavelet.plot(wtgap2,crn.lab="Pixel",x.lab="Time")
-#graphics.off()
+
+wtgap2<-morlet(sqrt(tgap2), x1 = seq_along(tgap2), p2 = NULL, dj = 0.25, siglvl = 0.95)
+pdf(file = "Gap Cave 2012-2013 morlet.pdf") 
+wavelet.plot(wtgap2,crn.lab="Pixel",x.lab="Time")
+# graphics.off()
+dev.off()
 
 # par(omi=c(1,0.5,0.5,0.5))
 # par(mai=c(0.8,0.8,0.8,0.8))
@@ -404,10 +407,11 @@ axis(at=seq(from=0,to=1000,by=500),labels=c(0,500,1000),side=2)
 box()
 axis(at=seq(from=0,to=length(tgap3),by=288*7),labels=seq(from=0,to=10,by=1),side=1)
 dev.off()
-#wtgap3<-morlet(tgap3, x1 = seq_along(tgap3), p2 = NULL, dj = 0.25, siglvl = 0.95)
-#windows() # if plot too large
-#wavelet.plot(wtgap3,crn.lab="Pixel",x.lab="Time")
-#graphics.off()
+
+wtgap3<-morlet(sqrt(tgap3), x1 = seq_along(tgap3), p2 = NULL, dj = 0.25, siglvl = 0.95)
+pdf(file = "Gap Cave 2013-2014 morlet.pdf") 
+wavelet.plot(wtgap3,crn.lab="Pixel",x.lab="Time")
+dev.off()
 
 # par(omi=c(1,0.5,0.5,0.5))
 # par(mai=c(0.8,0.8,0.8,0.8))
@@ -470,6 +474,11 @@ axis(at=seq(from=0,to=288*10,by=288),labels=seq(from=0,to=10,by=1),side=1)
 legend("topright","p-value = 0.05",lty=2,col="blue",bty="n")
 dev.off()
 
+wtgap4<-morlet(sqrt(tgap4), x1 = seq_along(tgap4), p2 = NULL, dj = 0.25, siglvl = 0.95)
+pdf(file = "Gap Cave 2014-2015 morlet.pdf") 
+wavelet.plot(wtgap4,crn.lab="Pixel",x.lab="Time")
+dev.off()
+
 # w1E
 tw1E<-as.matrix(w1E)
 tw1E<-as.vector(t(tw1E))
@@ -479,9 +488,11 @@ plot(tw1E,type="l",main="Wyandotte Cave 2011-2012",ylab="# saturated pixels",lab
 axis(at=seq(from=0,to=10000,by=5000),labels=c(0,5000,10000),side=2)
 box()
 axis(at=seq(from=0,to=length(tw1E),by=288*7),labels=seq(from=0,to=9,by=1),side=1)
-#wtw1E<-morlet(tw1E, x1 = seq_along(tw1E), p2 = NULL, dj = 0.25, siglvl = 0.95)
-# windows() # if plot too large
-#wavelet.plot(wtw1E,crn.lab="Pixel",x.lab="Time")
+dev.off()
+
+wtw1E<-morlet(sqrt(tw1E), x1 = seq_along(tw1E), p2 = NULL, dj = 0.25, siglvl = 0.95)
+pdf(file = "Wyandotte Cave 2011-2012 morlet.pdf")
+wavelet.plot(wtw1E,crn.lab="Pixel",x.lab="Time")
 #graphics.off()
 dev.off()
 # par(omi=c(1,0.5,0.5,0.5))
@@ -526,10 +537,11 @@ axis(at=seq(from=0,to=5000,by=2500),labels=c(0,2500,5000),side=2)
 box()
 axis(at=seq(from=0,to=length(tw2E),by=288*7),labels=seq(from=0,to=18,by=1),side=1)
 dev.off()
-#wtw2E<-morlet(tw2E, x1 = seq_along(tw2E), p2 = NULL, dj = 0.25, siglvl = 0.95)
-# windows() # if plot too large
-#wavelet.plot(wtw2E,crn.lab="Pixel",x.lab="Time")
-#graphics.off()
+
+wtw2E<-morlet(sqrt(tw2E), x1 = seq_along(tw2E), p2 = NULL, dj = 0.25, siglvl = 0.95)
+pdf(file = "Wyandotte Cave 2012-2013 morlet.pdf")
+wavelet.plot(wtw2E,crn.lab="Pixel",x.lab="Time")
+dev.off()
 
 # par(omi=c(1,0.5,0.5,0.5))
 # par(mai=c(0.8,0.8,0.8,0.8))
@@ -563,6 +575,7 @@ axis(at=seq(from=0,to=288*10,by=288),labels=seq(from=0,to=10,by=1),side=1)
 legend("topright","p-value = 0.05",lty=2,col="blue",bty="n")
 dev.off()
 
+
 # wtw2H<-morlet(log(tw2E+1)-mean(log(tw2E+1)), x1 = seq_along(tw2E), p2 = NULL, dj = 0.25, siglvl = 0.95)
 # windows() # if plot too large
 # wavelet.plot(wtw2H,crn.lab="Pixel",x.lab="Time")
@@ -578,10 +591,11 @@ axis(at=seq(from=0,to=10000,by=5000),labels=c(0,5000,10000),side=2)
 box()
 axis(at=seq(from=0,to=length(tw3E),by=288*7),labels=seq(from=0,to=16,by=1),side=1)
 dev.off()
-#wtw3E<-morlet(tw3E, x1 = seq_along(tw3E), p2 = NULL, dj = 0.25, siglvl = 0.95)
-#windows() # if plot too large
-#wavelet.plot(wtw3E,crn.lab="Pixel",x.lab="Time")
-#graphics.off()
+
+wtw3E<-morlet(sqrt(tw3E), x1 = seq_along(tw3E), p2 = NULL, dj = 0.25, siglvl = 0.95)
+pdf(file = "Wyandotte Cave 2013-2014 morlet.pdf")
+wavelet.plot(wtw3E,crn.lab="Pixel",x.lab="Time")
+dev.off()
 
 # par(omi=c(1,0.5,0.5,0.5))
 # par(mai=c(0.8,0.8,0.8,0.8))
@@ -620,11 +634,16 @@ tw1H<-as.matrix(w1H)
 tw1H<-as.vector(t(tw1H))
 #graphics.off()
 
-pdf(file = "Wyandotte Cave Hole 2013-2014.pdf")
-plot(tw1H,type="l",main="Wyandotte Cave Hole 2013-2014",ylab="# saturated pixels",labels=F,axes=F,xlab="weeks")
+pdf(file = "Wyandotte Cave deeper 2013-2014.pdf")
+plot(tw1H,type="l",main="Wyandotte Cave deeper 2013-2014",ylab="# saturated pixels",labels=F,axes=F,xlab="weeks")
 axis(at=seq(from=0,to=1000,by=500),labels=c(0,500,1000),side=2)
 box()
 axis(at=seq(from=0,to=length(tw1H),by=288*7),labels=seq(from=0,to=16,by=1),side=1)
+dev.off()
+
+wtw1H<-morlet(sqrt(tw1H), x1 = seq_along(tw1H), p2 = NULL, dj = 0.25, siglvl = 0.95)
+pdf(file = "Wyandotte Cave deeper 2013-2014 morlet.pdf")
+wavelet.plot(wtw1H,crn.lab="Pixel",x.lab="Time")
 dev.off()
 
 # par(omi=c(1,0.5,0.5,0.5))
@@ -637,10 +656,10 @@ dev.off()
 # #mtext("# saturated pixels",side=2,outer=T)
 # #mtext("Frame during day",side=1,line=2,outer=T)
 # mtext('b',font=2,side=3,line=1,at=-2,cex=1)
-# mtext("Wyandotte Cave Hole 2013-2014",side=3,outer=T)
+# mtext("Wyandotte Cave deeper 2013-2014",side=3,outer=T)
 
 #w1H.f1 <- filter(tw1H,filter=rep(1/250,250))
-pdf(file = "Wyandotte Cave Hole 2013-2014 acf.pdf")
+pdf(file = "Wyandotte Cave deeper 2013-2014 acf.pdf")
 par(mfrow=c(1,1))
 #plot(w1H.f1,col="red",lwd=2,lty=1,ylab="# saturated pixels")
 # subsample
@@ -648,10 +667,10 @@ par(mfrow=c(1,1))
 #subw1H<-tw1H[1:(i+10)==(i+10)]
 #layout(1:2)
 #par(mfrow=c(1,2))
-#plot(subw1H,type="l", ylab="# saturated pixels",main="Wyandotte Cave Hole 2013-2014 [sub]")
-#acf(subw1H, lag.max = length(subw1H),plot=T,main="Wyandotte Cave Hole 2013-2014 [sub]")
-#acf(sqrt(tw1H), lag.max = length(tw1H),plot=T,main="Wyandotte Cave Hole 2013-2014",xlab="Lag")
-acf(tw1H, lag.max = 288*10,plot=T,main="Wyandotte Cave Hole 2013-2014",xlab="Lag (Days)",labels=F,axes=F,
+#plot(subw1H,type="l", ylab="# saturated pixels",main="Wyandotte Cave deeper 2013-2014 [sub]")
+#acf(subw1H, lag.max = length(subw1H),plot=T,main="Wyandotte Cave deeper 2013-2014 [sub]")
+#acf(sqrt(tw1H), lag.max = length(tw1H),plot=T,main="Wyandotte Cave deeper 2013-2014",xlab="Lag")
+acf(tw1H, lag.max = 288*10,plot=T,main="Wyandotte Cave deeper 2013-2014",xlab="Lag (Days)",labels=F,axes=F,
     ylab="Autocorrelation")
 axis(at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1),side=2)
 box()
@@ -997,7 +1016,7 @@ dev.off()
 
 ##
 dim(t(w1H))
-pdf(file = "Wyandotte Cave Hole 2013-2014 month.pdf")
+pdf(file = "Wyandotte Cave deeper 2013-2014 month.pdf")
 par(mfrow=c(3,2))
 par(oma=c(1,4,1,2))
 par(mar=c(4,4,1,1))
@@ -1006,7 +1025,7 @@ l95ci<-rowMeans(t(w1H)[,1:2])-rowSds(t(w1H)[,1:2])/sqrt(length((t(w1H))[1,]))
 lims<-cbind(u95ci,l95ci)
 plot(rowMeans(t(w1H)[,1:2]),type="l",xaxt="n",#xlim=c(0,1200),xaxt="n",
      ylim=c(0,max(lims)),xlab="hours",
-     col="black",ylab="# saturated pixels",main="Wyandotte Hole November (2013-2014)",bty="n")
+     col="black",ylab="# saturated pixels",main="Wyandotte deeper November (2013-2014)",bty="n")
 lines(u95ci,col="grey")
 lines(l95ci,col="grey")
 axis(side=1, at = seq(from =0, to= 288, by = 288/24),
@@ -1024,7 +1043,7 @@ l95ci<-rowMeans(t(w1H)[,3:34])-rowSds(t(w1H)[,3:34])/sqrt(length((t(w1H))[1,]))
 lims<-cbind(u95ci,l95ci)
 plot(rowMeans(t(w1H)[,3:34]),type="l",xaxt="n",#xlim=c(0,1200),xaxt="n",
      ylim=c(0,max(lims)),xlab="hours",
-     col="black",ylab="# saturated pixels",main="Wyandotte Hole December (2013-2014)",bty="n")
+     col="black",ylab="# saturated pixels",main="Wyandotte deeper December (2013-2014)",bty="n")
 lines(u95ci,col="grey")
 lines(l95ci,col="grey")
 axis(side=1, at = seq(from =0, to= 288, by = 288/24),
@@ -1036,7 +1055,7 @@ l95ci<-rowMeans(t(w1H)[,35:66])-rowSds(t(w1H)[,35:66])/sqrt(length((t(w1H))[1,])
 lims<-na.omit(cbind(u95ci,l95ci))
 plot(rowMeans(t(w1H)[,35:66],na.rm=T),type="l",xaxt="n",#xlim=c(0,1200),xaxt="n",
      ylim=c(0,max(lims)),xlab="hours",bty="n",
-     col="black",ylab="# saturated pixels",main="Wyandotte Hole January (2013-2014)")
+     col="black",ylab="# saturated pixels",main="Wyandotte deeper January (2013-2014)")
 lines(u95ci,col="grey")
 lines(l95ci,col="grey")
 axis(side=1, at = seq(from =0, to= 288, by = 288/24),
@@ -1055,7 +1074,7 @@ l95ci<-rowMeans(t(w1H)[,67:95])-rowSds(t(w1H)[,67:95])/sqrt(length((t(w1H))[1,])
 lims<-cbind(u95ci,l95ci)
 plot(rowMeans(t(w1H)[,67:95]),type="l",xaxt="n",#xlim=c(0,1200),xaxt="n",
      ylim=c(0,max(lims)),xlab="hours",bty="n",
-     col="black",ylab="# saturated pixels",main="Wyandotte Hole February (2013-2014)")
+     col="black",ylab="# saturated pixels",main="Wyandotte deeper February (2013-2014)")
 lines(u95ci,col="grey")
 lines(l95ci,col="grey")
 axis(side=1, at = seq(from =0, to= 288, by = 288/24),
@@ -1074,7 +1093,7 @@ l95ci<-rowMeans(t(w1H)[,96:114])-rowSds(t(w1H)[,96:114])/sqrt(length((t(w1H))[1,
 lims<-na.omit(cbind(u95ci,l95ci))
 plot(rowMeans(t(w1H)[,96:114],na.rm=T),type="l",xaxt="n",#xlim=c(0,1200),xaxt="n",
      ylim=c(0,max(lims)),xlab="hours",bty="n",
-     col="black",ylab="# saturated pixels",main="Wyandotte Hole March (2013-2014)")
+     col="black",ylab="# saturated pixels",main="Wyandotte deeper March (2013-2014)")
 lines(u95ci,col="grey")
 lines(l95ci,col="grey")
 axis(side=1, at = seq(from =0, to= 288, by = 288/24),
@@ -2077,8 +2096,8 @@ axis(side=1, at = seq(from =-28*288, to= 8640*6, by = 8640),
      lty=2)
 dev.off()
 
-pdf(file = "Wyandotte cave hole 2013-2014_data.pdf")
-plot(w1hole,xlim=c(-((28)*288),(6*30*288)-(28)*288),type='l',ylab="No. saturated pixels",xlab='time', xaxt='n',main="Wyandotte cave 'hole' 2013-2014")
+pdf(file = "Wyandotte cave deeper 2013-2014_data.pdf")
+plot(w1hole,xlim=c(-((28)*288),(6*30*288)-(28)*288),type='l',ylab="No. saturated pixels",xlab='time', xaxt='n',main="Wyandotte cave deeper 2013-2014")
 ## W H 28/11/2013 # 2
 axis(side=1, at = seq(from =-28*288, to= 8640*6, by = 8640),
      labels = c("Nov","Dec","Jan","Feb","Mar","Apr","May"), tick = TRUE,
@@ -2235,9 +2254,9 @@ res.dat.w1H$hr<-0:23
 dat.p.w1H<-as.data.frame(rep(0:23,times=c(res.dat.w1H$x)))
 colnames(dat.p.w1H)<-'x'
 
-pdf(file = "Wyandotte Cave Hole 2013-2014 rose.pdf")
+pdf(file = "Wyandotte Cave deeper 2013-2014 rose.pdf")
 ggplot(dat.p.w1H, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
-  scale_fill_brewer() + ylab("Pixel count") + ggtitle("Wyandotte Cave Hole 2013-2014 \n Activity by hour") + 
+  scale_fill_brewer() + ylab("Pixel count") + ggtitle("Wyandotte Cave deeper 2013-2014 \n Activity by hour") + 
   scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
 dev.off()
 ##
