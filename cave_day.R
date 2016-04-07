@@ -13,7 +13,7 @@ rm(list=ls())
 library(dplR)
 library(xts)
 
-setwd("~/Cambridge/CSU 2014/cave")
+# setwd("~/Cambridge/CSU 2014/cave")
 #### load data
 
 ## try just front loading with the different # of time points
@@ -181,7 +181,7 @@ w3E[w3E>10000] <- NA
 par(mfrow=c(1,1))
 library(matrixStats) ## this works
 
-png(file = "Gap Cave 2011-2012 means.png")
+pdf(file = "Gap Cave 2011-2012 means.pdf")
 u95ci<-rowMeans((t(gap1)))+rowSds((t(gap1)))/sqrt(length((t(gap1))[1,]))
 l95ci<-rowMeans((t(gap1)))-rowSds((t(gap1)))/sqrt(length((t(gap1))[1,]))
 cis<-cbind(u95ci,l95ci)
@@ -197,11 +197,11 @@ legend("topright",c("mean","95% confidence intervals"),lty=1,col=c("black","grey
 mtext("hours",side=1,line=3)
 dev.off()
 
-png(file = "Gap Cave 2012-2013 means.png")
+pdf(file = "Gap Cave 2012-2013 means.pdf")
 u95ci<-rowMeans((t(gap2)))+rowSds((t(gap2)))/sqrt(length((t(gap2))[1,]))
 l95ci<-rowMeans((t(gap2)))-rowSds((t(gap2)))/sqrt(length((t(gap2))[1,]))
 plot(rowMeans((t(gap2))),type="l",ylim=c(min(l95ci),max(u95ci)),
-     main="Gap Cave 2012-2013",,xlab="hours",ylab="Mean # saturated pixels",labels=F,axes=F)
+     main="Gap Cave 2012-2013",xlab="hours",ylab="Mean # saturated pixels",labels=F,axes=F)
 lines(u95ci,col="grey")
 lines(l95ci,col="grey")
 axis(at=seq(from=5,to=35,by=5),labels=c(5,10,15,20,25,30,35),side=2)
@@ -211,7 +211,7 @@ legend("topright",c("mean","95% confidence intervals"),lty=1,col=c("black","grey
 box()
 dev.off()
 
-png(file = "Gap Cave 2013-2014 means.png")
+pdf(file = "Gap Cave 2013-2014 means.pdf")
 u95ci<-rowMeans((t(gap3)))+rowSds((t(gap3)))/sqrt(length((t(gap3))[1,]))
 l95ci<-rowMeans((t(gap3)))-rowSds((t(gap3)))/sqrt(length((t(gap3))[1,]))
 plot(rowMeans((t(gap3))),type="l",ylim=c(min(l95ci),max(u95ci)),
@@ -225,7 +225,7 @@ legend("topright",c("mean","95% confidence intervals"),lty=1,col=c("black","grey
 box()
 dev.off()
 
-png(file = "Gap Cave 2014-2015 means.png")
+pdf(file = "Gap Cave 2014-2015 means.pdf")
 u95ci<-rowMeans((t(gap4)))+rowSds((t(gap4)))/sqrt(length((t(gap4))[1,]))
 l95ci<-rowMeans((t(gap4)))-rowSds((t(gap4)))/sqrt(length((t(gap4))[1,]))
 plot(rowMeans((t(gap4))),type="l",ylim=c(min(l95ci),max(u95ci)),
@@ -241,7 +241,7 @@ axis(at=seq(from=0,to=288,by=288/24),labels=seq(from=0,to=24,by=1),side=1)
 legend("topright",c("mean","95% confidence intervals"),lty=1,col=c("black","grey"),bty="n")
 dev.off()
 
-png(file = "Wyandotte Cave 2011-2012 means.png")
+pdf(file = "Wyandotte Cave 2011-2012 means.pdf")
 u95ci<-rowMeans((t(w1E)))+rowSds((t(w1E)))/sqrt(length((t(w1E))[1,]))
 l95ci<-rowMeans((t(w1E)))-rowSds((t(w1E)))/sqrt(length((t(w1E))[1,]))
 plot(rowMeans((t(w1E))),type="l",ylim=c(min(l95ci),max(u95ci)),
@@ -254,7 +254,7 @@ axis(at=seq(from=0,to=288,by=288/24),labels=seq(from=0,to=24,by=1),side=1)
 legend("top",c("mean","95% confidence intervals"),lty=1,col=c("black","grey"),bty="n")
 dev.off()
 
-png(file = "Wyandotte Cave 2012-2013 means.png")
+pdf(file = "Wyandotte Cave 2012-2013 means.pdf")
 u95ci<-rowMeans((t(w2E)))+rowSds((t(w2E)))/sqrt(length((t(w2E))[1,]))
 l95ci<-rowMeans((t(w2E)))-rowSds((t(w2E)))/sqrt(length((t(w2E))[1,]))
 plot(rowMeans((t(w2E))),type="l",ylim=c(min(l95ci),max(u95ci)),
@@ -267,7 +267,7 @@ axis(at=seq(from=0,to=288,by=288/24),labels=seq(from=0,to=24,by=1),side=1)
 legend("top",c("mean","95% confidence intervals"),lty=1,col=c("black","grey"),bty="n")
 dev.off()
 
-png(file = "Wyandotte Cave 2013-2014 means.png")
+pdf(file = "Wyandotte Cave 2013-2014 means.pdf")
 u95ci<-rowMeans((t(w3E)),na.rm=T)+rowSds((t(w3E)))/sqrt(length((t(w3E))[1,]))
 l95ci<-rowMeans((t(w3E)),na.rm=T)-rowSds((t(w3E)))/sqrt(length((t(w3E))[1,]))
 cis<-cbind(u95ci,l95ci)
@@ -282,7 +282,7 @@ axis(at=seq(from=0,to=288,by=288/24),labels=seq(from=0,to=24,by=1),side=1)
 legend("top",c("mean","95% confidence intervals"),lty=1,col=c("black","grey"),bty="n")
 dev.off()
 
-png(file = "Wyandotte Cave Hole 2013-2014 means.png")
+pdf(file = "Wyandotte Cave Hole 2013-2014 means.pdf")
 u95ci<-rowMeans((t(w1H)))+rowSds((t(w1H)))/sqrt(length((t(w1H))[1,]))
 l95ci<-rowMeans((t(w1H)))-rowSds((t(w1H)))/sqrt(length((t(w1H))[1,]))
 plot(rowMeans((t(w1H))),type="l",ylim=c(min(l95ci),max(u95ci)),
@@ -300,7 +300,7 @@ dev.off()
 tgap1<-as.matrix(gap1,header=F)
 tgap1<-as.vector(t(tgap1))
 
-png(file = "Gap Cave 2011-2012.png")
+pdf(file = "Gap Cave 2011-2012.pdf")
 #graphics.off()
 plot(tgap1,type="l",
      main="Gap Cave 2011-2012",xlab="weeks",ylab="# saturated pixels",labels=F,axes=F)
@@ -327,7 +327,7 @@ dev.off()
 # mtext("Gap Cave 2011-2012",side=3,outer=T)
 
 #gap1.f1 <- filter(tgap1,filter=rep(1/250,250))
-png(file = "Gap Cave 2011-2012 acf.png")
+pdf(file = "Gap Cave 2011-2012 acf.pdf")
 par(mfrow=c(1,1))
 #plot(gap1.f1,col="red",lwd=2,lty=1,ylab="# saturated pixels")
 # subsample
@@ -351,7 +351,7 @@ dev.off()
 tgap2<-as.matrix(gap2)
 tgap2<-as.vector(t(tgap2))
 #graphics.off()
-png(file = "Gap Cave 2012-2013.png") 
+pdf(file = "Gap Cave 2012-2013.pdf") 
 plot(tgap2,type="l",xlab="weeks",main="Gap Cave 2012-2013",ylab="# saturated pixels",labels=F,axes=F)
 axis(at=seq(from=0,to=1000,by=500),labels=c(0,500,1000),side=2)
 box()
@@ -375,7 +375,7 @@ dev.off()
 # mtext("Gap Cave 2012-2013",side=3,outer=T)
 
 #gap2.f1 <- filter(tgap2,filter=rep(1/250,250))
-png(file = "Gap Cave 2012-2013 acf.png")
+pdf(file = "Gap Cave 2012-2013 acf.pdf")
 par(mfrow=c(1,1))
 #plot(gap2.f1,col="red",lwd=2,lty=1,ylab="# saturated pixels")
 # subsample
@@ -398,11 +398,11 @@ dev.off()
 tgap3<-as.matrix(gap3)
 tgap3<-as.vector(t(tgap3))
 #graphics.off()
-png(file = "Gap Cave 2013-2014.png")
+pdf(file = "Gap Cave 2013-2014.pdf")
 plot(tgap3,type="l",main="Gap Cave 2013-2014",ylab="# saturated pixels",labels=F,axes=F,xlab="weeks")
 axis(at=seq(from=0,to=1000,by=500),labels=c(0,500,1000),side=2)
 box()
-axis(at=seq(from=0,to=length(tgap3),by=288*7),labels=seq(from=0,to=20,by=1),side=1)
+axis(at=seq(from=0,to=length(tgap3),by=288*7),labels=seq(from=0,to=10,by=1),side=1)
 dev.off()
 #wtgap3<-morlet(tgap3, x1 = seq_along(tgap3), p2 = NULL, dj = 0.25, siglvl = 0.95)
 #windows() # if plot too large
@@ -422,7 +422,7 @@ dev.off()
 # mtext("Gap Cave 2013-2014",side=3,outer=T)
 
 #gap3.f1 <- filter(tgap3,filter=rep(1/250,250))
-png(file = "Gap Cave 2013-2014 acf.png")
+pdf(file = "Gap Cave 2013-2014 acf.pdf")
 par(mfrow=c(1,1))
 #plot(gap3.f1,col="red",lwd=2,lty=1,ylab="# saturated pixels")
 # subsample
@@ -445,11 +445,11 @@ dev.off()
 tgap4<-as.matrix(gap4)
 tgap4<-as.vector(t(tgap4))
 #graphics.off()
-png(file = "Gap Cave 2014-2015.png")
+pdf(file = "Gap Cave 2014-2015.pdf")
 plot(tgap4,type="l",main="Gap Cave 2014-2015",ylab="# saturated pixels",labels=F,axes=F,xlab="weeks")
 axis(at=seq(from=0,to=1000,by=500),labels=c(0,500,1000),side=2)
 box()
-axis(at=seq(from=0,to=length(tgap4),by=288*7),labels=seq(from=0,to=20,by=1),side=1)
+axis(at=seq(from=0,to=length(tgap4),by=288*7),labels=seq(from=0,to=19,by=1),side=1)
 dev.off()
 # par(omi=c(1,0.5,0.5,0.5))
 # par(mai=c(0.8,0.8,0.8,0.8))
@@ -460,7 +460,7 @@ dev.off()
 # acf(tgap4, lag.max = length(tgap4),plot=T,main="",xlab="Lag")
 # mtext('b',font=2,side=3,line=1,at=-2,cex=1)
 # mtext("Gap Cave 2014-2015",side=3,outer=T)
-png(file = "Gap Cave 2014-2015 acf.png")
+pdf(file = "Gap Cave 2014-2015 acf.pdf")
 par(mfrow=c(1,1))
 acf(tgap4, lag.max = 288*10,plot=T,main="Gap Cave 2014-2015",xlab="Lag (Days)",labels=F,axes=F,
     ylab="Autocorrelation")
@@ -474,7 +474,7 @@ dev.off()
 tw1E<-as.matrix(w1E)
 tw1E<-as.vector(t(tw1E))
 #graphics.off()
-png(file = "Wyandotte Cave 2011-2012.png")
+pdf(file = "Wyandotte Cave 2011-2012.pdf")
 plot(tw1E,type="l",main="Wyandotte Cave 2011-2012",ylab="# saturated pixels",labels=F,axes=F,xlab="weeks")
 axis(at=seq(from=0,to=10000,by=5000),labels=c(0,5000,10000),side=2)
 box()
@@ -497,7 +497,7 @@ dev.off()
 # mtext("Wyandotte Cave 2011-2012",side=3,outer=T)
 
 #tw1E.f1 <- filter(tw1E,filter=rep(1/250,250))
-png(file = "Wyandotte Cave 2011-2012 acf.png")
+pdf(file = "Wyandotte Cave 2011-2012 acf.pdf")
 par(mfrow=c(1,1))
 #plot(tw1E.f1,col="red",lwd=2,lty=1,ylab="# saturated pixels")
 # subsample
@@ -520,7 +520,7 @@ dev.off()
 tw2E<-as.matrix(w2E)
 tw2E<-as.vector(t(tw2E))
 #graphics.off()
-png(file = "Wyandotte Cave 2012-2013.png")
+pdf(file = "Wyandotte Cave 2012-2013.pdf")
 plot(tw2E,type="l",main="Wyandotte Cave 2012-2013",ylab="# saturated pixels",labels=F,axes=F,xlab="weeks")
 axis(at=seq(from=0,to=5000,by=2500),labels=c(0,2500,5000),side=2)
 box()
@@ -544,7 +544,7 @@ dev.off()
 # mtext("Wyandotte Cave 2012-2013",side=3,outer=T)
 
 #w2E.f1 <- filter(tw2E,filter=rep(1/250,250))
-png(file = "Wyandotte Cave 2012-2013 acf.png")
+pdf(file = "Wyandotte Cave 2012-2013 acf.pdf")
 par(mfrow=c(1,1))
 #plot(w2E.f1,col="red",lwd=2,lty=1,ylab="# saturated pixels")
 # subsample
@@ -572,7 +572,7 @@ dev.off()
 tw3E<-as.matrix(w3E)
 tw3E<-as.vector(t(tw3E))
 #graphics.off()
-png(file = "Wyandotte Cave 2013-2014.png")
+pdf(file = "Wyandotte Cave 2013-2014.pdf")
 plot(tw3E,type="l",main="Wyandotte Cave 2013-2014",ylab="# saturated pixels",labels=F,axes=F,xlab="weeks")
 axis(at=seq(from=0,to=10000,by=5000),labels=c(0,5000,10000),side=2)
 box()
@@ -596,7 +596,7 @@ dev.off()
 # mtext("Wyandotte Cave 2013-2014",side=3,outer=T)
 
 #w3E.f1 <- filter(tw3E,filter=rep(1/250,250))
-png(file = "Wyandotte Cave 2013-2014 acf.png")
+pdf(file = "Wyandotte Cave 2013-2014 acf.pdf")
 par(mfrow=c(1,1))
 #plot(w3E.f1,col="red",lwd=2,lty=1,ylab="# saturated pixels")
 # subsample
@@ -620,7 +620,7 @@ tw1H<-as.matrix(w1H)
 tw1H<-as.vector(t(tw1H))
 #graphics.off()
 
-png(file = "Wyandotte Cave Hole 2013-2014.png")
+pdf(file = "Wyandotte Cave Hole 2013-2014.pdf")
 plot(tw1H,type="l",main="Wyandotte Cave Hole 2013-2014",ylab="# saturated pixels",labels=F,axes=F,xlab="weeks")
 axis(at=seq(from=0,to=1000,by=500),labels=c(0,500,1000),side=2)
 box()
@@ -640,7 +640,7 @@ dev.off()
 # mtext("Wyandotte Cave Hole 2013-2014",side=3,outer=T)
 
 #w1H.f1 <- filter(tw1H,filter=rep(1/250,250))
-png(file = "Wyandotte Cave Hole 2013-2014 acf.png")
+pdf(file = "Wyandotte Cave Hole 2013-2014 acf.pdf")
 par(mfrow=c(1,1))
 #plot(w1H.f1,col="red",lwd=2,lty=1,ylab="# saturated pixels")
 # subsample
@@ -744,7 +744,7 @@ par(mfrow=c(1,1))
 
 ##
 dim(t(w1E))
-png(file = "Wyandotte 2011-2012 month.png")
+pdf(file = "Wyandotte 2011-2012 month.pdf")
 par(mfrow=c(2,2))
 par(oma=c(1,2,1,2))
 par(mar=c(2,2,1,1))
@@ -804,7 +804,7 @@ dev.off()
 
 ##
 dim(t(w2E))
-png(file = "Wyandotte 2012-2013 month.png")
+pdf(file = "Wyandotte 2012-2013 month.pdf")
 par(mfrow=c(3,2))
 par(oma=c(1,4,1,2))
 par(mar=c(4,4,1,1))
@@ -816,6 +816,7 @@ plot(rowMeans(t(w2E)[,1:10]),type="l",xaxt="n",#xlim=c(0,1200),xaxt="n",
      col="black",ylab="# saturated pixels",main="Wyandotte November (2012-2013)",bty="n")
 lines(u95ci,col="grey")
 lines(l95ci,col="grey")
+lines(rowMeans(t(w2E)[,1:10]))
 axis(side=1, at = seq(from =0, to= 288, by = 288/24),
      labels = c(0:24), tick = TRUE,
      lty=1)#,outer=T)
@@ -900,7 +901,7 @@ dev.off()
 ## W H 28/11/2013 # 2
 ##
 dim(t(w3E))
-png(file = "Wyandotte 2013-2014 month.png")
+pdf(file = "Wyandotte 2013-2014 month.pdf")
 par(mfrow=c(3,2))
 par(oma=c(1,4,1,2))
 par(mar=c(4,4,1,1))
@@ -996,7 +997,7 @@ dev.off()
 
 ##
 dim(t(w1H))
-png(file = "Wyandotte Cave Hole 2013-2014 month.png")
+pdf(file = "Wyandotte Cave Hole 2013-2014 month.pdf")
 par(mfrow=c(3,2))
 par(oma=c(1,4,1,2))
 par(mar=c(4,4,1,1))
@@ -1096,7 +1097,7 @@ id_gap3 <-c(36,39:57)
 ##
 
 dim(t(gap1))
-png(file = "Gap Cave 2011-2012 month.png")
+pdf(file = "Gap Cave 2011-2012 month.pdf")
 par(mfrow=c(2,2))
 par(oma=c(1,4,1,2))
 par(mar=c(4,4,1,1))
@@ -1170,7 +1171,7 @@ dev.off()
 
 ##
 dim(t(gap2))
-png(file = "Gap Cave 2012-2013 month.png")
+pdf(file = "Gap Cave 2012-2013 month.pdf")
 par(mfrow=c(3,2))
 par(oma=c(1,4,1,2))
 par(mar=c(4,4,1,1))
@@ -1267,7 +1268,7 @@ dev.off()
 
 ##
 dim(t(gap3))
-png(file = "Gap Cave 2012-2013 month.png")
+pdf(file = "Gap Cave 2012-2013 month.pdf")
 par(mfrow=c(2,2))
 par(oma=c(1,4,1,2))
 par(mar=c(4,4,1,1))
@@ -1323,7 +1324,7 @@ dev.off()
 
 ##
 dim(t(gap4))
-png(file = "Gap Cave 2014-2015 month.png")
+pdf(file = "Gap Cave 2014-2015 month.pdf")
 par(mfrow=c(3,2))
 par(oma=c(1,4,1,2))
 par(mar=c(4,4,1,1))
@@ -2020,7 +2021,7 @@ w1hole<-as.vector(t(w1H))
 ##
 lims<-max(length(g1),length(g2),length(g3),length(g4),length(w1),length(w2),length(w3),length(w1hole))
 
-png(file = "Gap Cave 2011-2012_data.png")
+pdf(file = "Gap Cave 2011-2012_data.pdf")
 plot(g1,xlim=c(-18*288,(6*30*288)-18*288),type='l',ylab="No. saturated pixels",xlab='time', xaxt='n',main="Gap cave 2011-2012")
 ## Gap 18/11/2011 # 12
 axis(side=1, at = seq(from =-18*288, to= 8640*6, by = 8640),
@@ -2028,7 +2029,7 @@ axis(side=1, at = seq(from =-18*288, to= 8640*6, by = 8640),
      lty=2)
 dev.off()
 
-png(file = "Gap Cave 2012-2013_data.png")
+pdf(file = "Gap Cave 2012-2013_data.pdf")
 plot(g2,xlim=c(-((4+31)*288),(6*30*288)-((4+31)*288)),type='l',ylab="No. saturated pixels",xlab='time', xaxt='n',main="Gap cave 2012-2013")
 ## Gap 04/12/2012 # 27
 axis(side=1, at = seq(from =-((4+31)*288), to= 8640*5, by = 8640),
@@ -2036,7 +2037,7 @@ axis(side=1, at = seq(from =-((4+31)*288), to= 8640*5, by = 8640),
      lty=2)
 dev.off()
 
-png(file = "Gap Cave 2013-2014_data.png")
+pdf(file = "Gap Cave 2013-2014_data.pdf")
 plot(g3,xlim=c(-((4+31+31+31)*288),(6*30*288)-(4+31+31+31)*288),type='l',ylab="No. saturated pixels",xlab='time', xaxt='n',main="Gap cave 2013-2014")
 ## Gap 04/02/2013 # 24
 axis(side=1, at = seq(from =-(4+31+31+31)*288, to= 8640*3, by = 8640),
@@ -2044,7 +2045,7 @@ axis(side=1, at = seq(from =-(4+31+31+31)*288, to= 8640*3, by = 8640),
      lty=2)
 dev.off()
 
-png(file = "Gap Cave 2014-2015_data.png")
+pdf(file = "Gap Cave 2014-2015_data.pdf")
 plot(g4,xlim=c(-((22)*288),(6*30*288)-(22)*288),type='l',ylab="No. saturated pixels",xlab='time', xaxt='n',main="Gap cave 2014-2015")
 ## Gap 22/11/2014 # 8
 axis(side=1, at = seq(from =-22*288, to= 8640*6, by = 8640),
@@ -2052,7 +2053,7 @@ axis(side=1, at = seq(from =-22*288, to= 8640*6, by = 8640),
      lty=2)
 dev.off()
 
-png(file = "Wyandotte cave entrance 2011-2012_data.png")
+pdf(file = "Wyandotte cave entrance 2011-2012_data.pdf")
 plot(w1,xlim=c(-((31+31+26)*288),(6*30*288)-(31+31+26)*288),type='l',ylab="No. saturated pixels",xlab='time', xaxt='n',main="Wyandotte cave entrance 2011-2012")
 ## W e 26/01/2011 # 5
 axis(side=1, at = seq(from =-(31+31+26)*288, to= 8640*4, by = 8640),
@@ -2060,7 +2061,7 @@ axis(side=1, at = seq(from =-(31+31+26)*288, to= 8640*4, by = 8640),
      lty=2)
 dev.off()
 
-png(file = "Wyandotte cave entrance 2012-2013_data.png")
+pdf(file = "Wyandotte cave entrance 2012-2013_data.pdf")
 plot(w2,xlim=c(-((20)*288),(6*30*288)-(20)*288),type='l',ylab="No. saturated pixels",xlab='time', xaxt='n',main="Wyandotte cave entrance 2012-2013")
 ## W e 20/11/2012 # 10
 axis(side=1, at = seq(from =-20*288, to= 8640*6, by = 8640),
@@ -2068,7 +2069,7 @@ axis(side=1, at = seq(from =-20*288, to= 8640*6, by = 8640),
      lty=2)
 dev.off()
 
-png(file = "Wyandotte cave entrance 2013-2014_data.png")
+pdf(file = "Wyandotte cave entrance 2013-2014_data.pdf")
 plot(w3,xlim=c(-((28)*288),(6*30*288)-(28)*288),type='l',ylab="No. saturated pixels",xlab='time', xaxt='n',main="Wyandotte cave entrance 2013-2014")
 ## W e 28/11/2013 # 2
 axis(side=1, at = seq(from =-28*288, to= 8640*6, by = 8640),
@@ -2076,7 +2077,7 @@ axis(side=1, at = seq(from =-28*288, to= 8640*6, by = 8640),
      lty=2)
 dev.off()
 
-png(file = "Wyandotte cave hole 2013-2014_data.png")
+pdf(file = "Wyandotte cave hole 2013-2014_data.pdf")
 plot(w1hole,xlim=c(-((28)*288),(6*30*288)-(28)*288),type='l',ylab="No. saturated pixels",xlab='time', xaxt='n',main="Wyandotte cave 'hole' 2013-2014")
 ## W H 28/11/2013 # 2
 axis(side=1, at = seq(from =-28*288, to= 8640*6, by = 8640),
@@ -2123,7 +2124,7 @@ res.dat.gp1$hr<-0:23
 dat.p.gp1<-as.data.frame(rep(0:23,times=c(res.dat.gp1$x)))
 colnames(dat.p.gp1)<-'x'
 
-png(file = "Gap Cave 2011-2012 rose.png")
+pdf(file = "Gap Cave 2011-2012 rose.pdf")
 ggplot(dat.p.gp1, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
   scale_fill_brewer() + ylab("Pixel count") + ggtitle("Gap Cave 2011-2012 \n Activity by hour") + 
   scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
@@ -2140,7 +2141,7 @@ dat.p.gp2<-as.data.frame(rep(0:23,times=c(res.dat.gp2$x)))
 colnames(dat.p.gp2)<-'x'
 
 
-png(file = "Gap Cave 2012-2013 rose.png")
+pdf(file = "Gap Cave 2012-2013 rose.pdf")
 ggplot(dat.p.gp2, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
   scale_fill_brewer() + ylab("Pixel count") + ggtitle("Gap Cave 2012-2013 \n Activity by hour") + 
   scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
@@ -2155,7 +2156,7 @@ res.dat.gp3$hr<-0:23
 dat.p.gp3<-as.data.frame(rep(0:23,times=c(res.dat.gp3$x)))
 colnames(dat.p.gp3)<-'x'
 
-png(file = "Gap Cave 2013-2014 rose.png")
+pdf(file = "Gap Cave 2013-2014 rose.pdf")
 ggplot(dat.p.gp3, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
   scale_fill_brewer() + ylab("Pixel count") + ggtitle("Gap Cave 2013-2014 \n Activity by hour") + 
   scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
@@ -2171,7 +2172,7 @@ res.dat.gp4$hr<-0:23
 dat.p.gp4<-as.data.frame(rep(0:23,times=c(res.dat.gp4$x)))
 colnames(dat.p.gp4)<-'x'
 
-png(file = "Gap Cave 2014-2015 rose.png")
+pdf(file = "Gap Cave 2014-2015 rose.pdf")
 ggplot(dat.p.gp4, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
   scale_fill_brewer() + ylab("Pixel count") + ggtitle("Gap Cave 2014-2015 \n Activity by hour") + 
   scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
@@ -2187,7 +2188,7 @@ res.dat.w1E$hr<-0:23
 dat.p.w1E<-as.data.frame(rep(0:23,times=c(res.dat.w1E$x)))
 colnames(dat.p.w1E)<-'x'
 
-png(file = "Wyandotte Cave 2011-2012 rose.png")
+pdf(file = "Wyandotte Cave 2011-2012 rose.pdf")
 ggplot(dat.p.w1E, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
   scale_fill_brewer() + ylab("Pixel count") + ggtitle("Wyandotte Cave 2011-2012 \n Activity by hour") + 
   scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
@@ -2202,7 +2203,7 @@ res.dat.w2E$hr<-0:23
 dat.p.w2E<-as.data.frame(rep(0:23,times=c(res.dat.w2E$x)))
 colnames(dat.p.w2E)<-'x'
 
-png(file = "Wyandotte Cave 2012-2013 rose.png")
+pdf(file = "Wyandotte Cave 2012-2013 rose.pdf")
 ggplot(dat.p.w2E, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
   scale_fill_brewer() + ylab("Pixel count") + ggtitle("Wyandotte Cave 2012-2013 \n Activity by hour") + 
   scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
@@ -2218,7 +2219,7 @@ res.dat.w3E$hr<-0:23
 dat.p.w3E<-as.data.frame(rep(0:23,times=c(res.dat.w3E$x)))
 colnames(dat.p.w3E)<-'x'
 
-png(file = "Wyandotte Cave 2013-2014 rose.png")
+pdf(file = "Wyandotte Cave 2013-2014 rose.pdf")
 ggplot(dat.p.w3E, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
   scale_fill_brewer() + ylab("Pixel count") + ggtitle("Wyandotte Cave 2013-2014 \n Activity by hour") + 
   scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
@@ -2234,7 +2235,7 @@ res.dat.w1H$hr<-0:23
 dat.p.w1H<-as.data.frame(rep(0:23,times=c(res.dat.w1H$x)))
 colnames(dat.p.w1H)<-'x'
 
-png(file = "Wyandotte Cave Hole 2013-2014 rose.png")
+pdf(file = "Wyandotte Cave Hole 2013-2014 rose.pdf")
 ggplot(dat.p.w1H, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
   scale_fill_brewer() + ylab("Pixel count") + ggtitle("Wyandotte Cave Hole 2013-2014 \n Activity by hour") + 
   scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
