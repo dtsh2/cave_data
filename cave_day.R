@@ -2056,6 +2056,15 @@ axis(side=1, at = seq(from =-((4+31)*288), to= 8640*5, by = 8640),
      lty=2)
 dev.off()
 
+pdf(file = "Gap Cave 2012-2013_data_pub.pdf")
+plot(g2,xlim=c(-((4+31)*288),(6*30*288)-((4+31)*288)),ylim=c(0,5000),type='l',ylab="No. saturated pixels",xlab='time', xaxt='n',main="Gap cave 2012-2013")
+## Gap 04/12/2012 # 27
+axis(side=1, at = seq(from =-((4+31)*288), to= 8640*5, by = 8640),
+     labels = c("Nov","Dec","Jan","Feb","Mar","Apr","May"), tick = TRUE,
+     lty=2)
+dev.off()
+
+
 pdf(file = "Gap Cave 2013-2014_data.pdf")
 plot(g3,xlim=c(-((4+31+31+31)*288),(6*30*288)-(4+31+31+31)*288),type='l',ylab="No. saturated pixels",xlab='time', xaxt='n',main="Gap cave 2013-2014")
 ## Gap 04/02/2013 # 24
