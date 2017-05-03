@@ -105,58 +105,6 @@ axis(at=seq(from=0,to=288*10,by=288),labels=seq(from=0,to=10,by=1),side=1)
 legend("topright","p-value = 0.05",lty=2,col="blue",bty="n")
 dev.off()
 
-# gap 3
-tgap3<-as.matrix(gap3)
-tgap3<-as.vector(t(tgap3))
-#graphics.off()
-pdf(file = "Gap Cave 2013-2014.pdf")
-plot(tgap3,type="l",main="Gap Cave 2013-2014",ylab="# saturated pixels",labels=F,axes=F,xlab="weeks")
-axis(at=seq(from=0,to=1000,by=500),labels=c(0,500,1000),side=2)
-box()
-axis(at=seq(from=0,to=length(tgap3),by=288*7),labels=seq(from=0,to=10,by=1),side=1)
-dev.off()
-
-wtgap3<-morlet(sqrt(tgap3), x1 = seq_along(tgap3), p2 = NULL, dj = 0.25, siglvl = 0.95)
-pdf(file = "Gap Cave 2013-2014 morlet.pdf") 
-wavelet.plot(wtgap3,crn.lab="Pixel",x.lab="Time")
-dev.off()
-
-#gap3.f1 <- filter(tgap3,filter=rep(1/250,250))
-pdf(file = "Gap Cave 2013-2014 acf.pdf")
-par(mfrow=c(1,1))
-acf(tgap3, lag.max = 288*10,plot=T,main="Gap Cave 2013-2014",xlab="Lag (Days)",labels=F,axes=F,
-    ylab="Autocorrelation")
-axis(at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1),side=2)
-box()
-axis(at=seq(from=0,to=288*10,by=288),labels=seq(from=0,to=10,by=1),side=1)
-legend("topright","p-value = 0.05",lty=2,col="blue",bty="n")
-dev.off()
-
-# gap 4
-tgap4<-as.matrix(gap4)
-tgap4<-as.vector(t(tgap4))
-#graphics.off()
-pdf(file = "Gap Cave 2014-2015.pdf")
-plot(tgap4,type="l",main="Gap Cave 2014-2015",ylab="# saturated pixels",labels=F,axes=F,xlab="weeks")
-axis(at=seq(from=0,to=1000,by=500),labels=c(0,500,1000),side=2)
-box()
-axis(at=seq(from=0,to=length(tgap4),by=288*7),labels=seq(from=0,to=19,by=1),side=1)
-dev.off()
-
-pdf(file = "Gap Cave 2014-2015 acf.pdf")
-par(mfrow=c(1,1))
-acf(tgap4, lag.max = 288*10,plot=T,main="Gap Cave 2014-2015",xlab="Lag (Days)",labels=F,axes=F,
-    ylab="Autocorrelation")
-axis(at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1),side=2)
-box()
-axis(at=seq(from=0,to=288*10,by=288),labels=seq(from=0,to=10,by=1),side=1)
-legend("topright","p-value = 0.05",lty=2,col="blue",bty="n")
-dev.off()
-
-wtgap4<-morlet(sqrt(tgap4), x1 = seq_along(tgap4), p2 = NULL, dj = 0.25, siglvl = 0.95)
-pdf(file = "Gap Cave 2014-2015 morlet.pdf") 
-wavelet.plot(wtgap4,crn.lab="Pixel",x.lab="Time")
-dev.off()
 
 # w1E
 tw1E<-as.matrix(w1E)
@@ -909,143 +857,16 @@ hrs11<-rep(seq(from=1,to=24,by=2),12)
 hrs12<-rep(seq(from=0,to=23,by=2),12)
 hrs<-c(hrs11,hrs12)
 
-tgp1<-as.data.frame(t(gap1))
-tgp1$rs<-rowSums(tgp1)
-tgp1$hrs<-sort(hrs)
-res.dat.gp1<-aggregate(tgp1$rs, by=list(tgp1$hrs), FUN=sum)[2]
-res.dat.gp1$hr<-0:23
-dat.p.gp1<-as.data.frame(rep(0:23,times=c(res.dat.gp1$x)))
-colnames(dat.p.gp1)<-'x'
-
-pdf(file = "Gap Cave 2011-2012 rose.pdf")
-ggplot(dat.p.gp1, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
-  scale_fill_brewer() + ylab("Pixel count") + ggtitle("Gap Cave 2011-2012 \n Activity by hour") + 
-  scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
-dev.off()
-
-##
-
-tgp2<-as.data.frame(t(gap2))
-tgp2$rs<-rowSums(tgp2)
-tgp2$hrs<-sort(hrs)
-res.dat.gp2<-aggregate(tgp2$rs, by=list(tgp2$hrs), FUN=sum)[2]
-res.dat.gp2$hr<-0:23
-dat.p.gp2<-as.data.frame(rep(0:23,times=c(res.dat.gp2$x)))
-colnames(dat.p.gp2)<-'x'
-
-pdf(file = "Gap Cave 2012-2013 rose.pdf")
-ggplot(dat.p.gp2, aes(x = x)) + geom_histogram(breaks = seq(0,24), colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
-  scale_fill_brewer() + ylab("Pixel count") + ggtitle("Gap Cave 2012-2013 \n Activity by hour") + 
-  scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
-dev.off()
-##
-
-tgp3<-as.data.frame(t(gap3))
-tgp3$rs<-rowSums(tgp3)
-tgp3$hrs<-sort(hrs)
-res.dat.gp3<-aggregate(tgp3$rs, by=list(tgp3$hrs), FUN=sum)[2]
-res.dat.gp3$hr<-0:23
-dat.p.gp3<-as.data.frame(rep(0:23,times=c(res.dat.gp3$x)))
-colnames(dat.p.gp3)<-'x'
-
-pdf(file = "Gap Cave 2013-2014 rose.pdf")
-ggplot(dat.p.gp3, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
-  scale_fill_brewer() + ylab("Pixel count") + ggtitle("Gap Cave 2013-2014 \n Activity by hour") + 
-  scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
-dev.off()
-
-##
-
-tgp4<-as.data.frame(t(gap4))
-tgp4$rs<-rowSums(tgp4)
-tgp4$hrs<-sort(hrs)
-res.dat.gp4<-aggregate(tgp4$rs, by=list(tgp4$hrs), FUN=sum)[2]
-res.dat.gp4$hr<-0:23
-dat.p.gp4<-as.data.frame(rep(0:23,times=c(res.dat.gp4$x)))
-colnames(dat.p.gp4)<-'x'
-
-pdf(file = "Gap Cave 2014-2015 rose.pdf")
-ggplot(dat.p.gp4, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
-  scale_fill_brewer() + ylab("Pixel count") + ggtitle("Gap Cave 2014-2015 \n Activity by hour") + 
-  scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
-dev.off()
-
-##
-
-tw1E<-as.data.frame(t(w1E))
-tw1E$rs<-rowSums(tw1E)
-tw1E$hrs<-sort(hrs)
-res.dat.w1E<-aggregate(tw1E$rs, by=list(tw1E$hrs), FUN=sum)[2]
-res.dat.w1E$hr<-0:23
-dat.p.w1E<-as.data.frame(rep(0:23,times=c(res.dat.w1E$x)))
-colnames(dat.p.w1E)<-'x'
-
-pdf(file = "Wyandotte Cave 2011-2012 rose.pdf")
-ggplot(dat.p.w1E, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
-  scale_fill_brewer() + ylab("Pixel count") + ggtitle("Wyandotte Cave 2011-2012 \n Activity by hour") + 
-  scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
-dev.off()
-
-##
-tw2E<-as.data.frame(t(w2E))
-tw2E$rs<-rowSums(tw2E)
-tw2E$hrs<-sort(hrs)
-res.dat.w2E<-aggregate(tw2E$rs, by=list(tw2E$hrs), FUN=sum)[2]
-res.dat.w2E$hr<-0:23
-dat.p.w2E<-as.data.frame(rep(0:23,times=c(res.dat.w2E$x)))
-colnames(dat.p.w2E)<-'x'
-
-pdf(file = "Wyandotte Cave 2012-2013 rose.pdf")
-ggplot(dat.p.w2E, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
-  scale_fill_brewer() + ylab("Pixel count") + ggtitle("Wyandotte Cave 2012-2013 \n Activity by hour") + 
-  scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
-dev.off()
-
-##
-
 tw3E<-as.data.frame(t(w3E))
 tw3E$rs<-rowSums(tw3E)
 tw3E$hrs<-sort(hrs)
 res.dat.w3E<-aggregate(tw3E$rs, by=list(tw3E$hrs), FUN=sum)[2]
-res.dat.w3E$hr<-0:23
-dat.p.w3E<-as.data.frame(rep(0:23,times=c(res.dat.w3E$x)))
+res.dat.w3E$hr<-1:24
+dat.p.w3E<-as.data.frame(rep(1:24,times=c(res.dat.w3E$x)))
 colnames(dat.p.w3E)<-'x'
 
 pdf(file = "Wyandotte Cave 2013-2014 rose.pdf")
-ggplot(dat.p.w3E, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
+ggplot(dat.p.w3E, aes(x = x)) + geom_histogram(breaks = seq(0,24), colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
   scale_fill_brewer() + ylab("Pixel count") + ggtitle("Wyandotte Cave 2013-2014 \n Activity by hour") + 
   scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
 dev.off()
-
-##
-
-tw1H<-as.data.frame(t(w1H))
-tw1H$rs<-rowSums(tw1H)
-tw1H$hrs<-sort(hrs)
-res.dat.w1H<-aggregate(tw1H$rs, by=list(tw1H$hrs), FUN=sum)[2]
-res.dat.w1H$hr<-0:23
-dat.p.w1H<-as.data.frame(rep(0:23,times=c(res.dat.w1H$x)))
-colnames(dat.p.w1H)<-'x'
-
-pdf(file = "Wyandotte Cave deeper 2013-2014 rose.pdf")
-ggplot(dat.p.w1H, aes(x = x)) + geom_histogram(breaks = seq(0,24), width = 2, colour = "grey") + coord_polar(start = 0) + theme_minimal() + 
-  scale_fill_brewer() + ylab("Pixel count") + ggtitle("Wyandotte Cave deeper 2013-2014 \n Activity by hour") + 
-  scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24))
-dev.off()
-##
-
-par(mfrow=c(1,1))
-rose.diag(dat.p.gp1$x, bin=23, col="blue", 
-          main="Gap 1",prop=6)
-rose.diag(dat.p.gp2$x, bin=23, col="blue", 
-          main="Gap 2",prop=6)
-rose.diag(dat.p.gp3$x, bin=23, col="blue", 
-          main="Gap 3",prop=6)
-rose.diag(dat.p.gp4$x, bin=23, col="blue", 
-          main="Gap 4",prop=6)
-rose.diag(dat.p.w1E$x, bin=23, col="blue", 
-          main="Wyandotte 1",prop=6)
-rose.diag(dat.p.w1H$x, bin=23, col="blue", 
-          main="Wyandotte 1 Hole",prop=6)
-rose.diag(dat.p.w2E$x, bin=23, col="blue", 
-          main="Wyandotte 2",prop=6)
