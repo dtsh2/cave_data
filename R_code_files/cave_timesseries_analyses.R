@@ -31,8 +31,8 @@ w3H = read.csv("IN_2013-2014 (Deeper).csv",na.strings=c("NA"," - "),header=F)
 # data_name <-'w2E'
 # data<-w3E
 # data_name <-'w3E'
-# data<-w3H
-# data_name <-'w3H'
+ data<-w3H
+ data_name <-'w3H'
 
 ### set up
 
@@ -128,8 +128,9 @@ dev.off()
 
 mor_data<-morlet(sqrt(data), x1 = seq_along(data), p2 = NULL, dj = 0.25, siglvl = 0.95)
 
+source("wavelet_plot_dh.R")
 pdf(file = paste(data_name,"_morlet.pdf",sep=''))
-  wavelet.plot(mor_data,crn.lab="Pixel",x.lab="Time")
+  wavelet.plot.dh(mor_data,crn.lab="Pixel",x.lab="Time")
 dev.off()
 
 ### acf
